@@ -1,4 +1,4 @@
-# [GoLogo](https://golang.org/lib/godoc/images/go-logo-blue.svg) Go Code Samples
+# Go Code Samples
 Code samples, and learning material for GO Programing Language
 
 ![GoLogo](https://golang.org/lib/godoc/images/go-logo-blue.svg)
