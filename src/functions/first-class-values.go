@@ -41,10 +41,27 @@ func closure() func() int {
 	}
 }
 
+// Variable functions in Go
+func varArgs(args ...int) int {
+	// args is treated as a slice inside a function
+	return args[0]
+}
+
+// Deferred function calls
+// Deferred functions are called when all the surrounding functions gets called
+// Helpful in writing a cleanup code, like closing a file, closing a db connection etc
+// Gets called in the end of a function, just put a defer keyword prefix with a function call
+func iamADeferredFunc() {
+	fmt.Println("Bye! from a deferred function")
+}
+
 // anonymous function
 // Function without names are called anonymouse functions
 
 func main() {
+	// Although this is called in the beginning, since we have prexied the function call with defer keyword
+	// this function will be called when all the existing code in main is called
+	defer iamADeferredFunc()
 	fmt.Println("Hello World")
 	multiplyBy2 := multiply(2) // this returns a new function
 	multiplyBy4 := multiply(4) // this also returns a new function
@@ -58,4 +75,7 @@ func main() {
 	fmt.Println(inc()) // so value of x is incremented each time we call inc method
 	fmt.Println(inc())
 	fmt.Println(inc())
+
+	fmt.Println(varArgs(1, 2, 3, 4))
+	fmt.Println(varArgs([]int{1, 2, 3, 4, 5}...)) // slices can also be expanded to a variable number of arguments
 }
