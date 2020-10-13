@@ -51,8 +51,10 @@ func varArgs(args ...int) int {
 // Deferred functions are called when all the surrounding functions gets called
 // Helpful in writing a cleanup code, like closing a file, closing a db connection etc
 // Gets called in the end of a function, just put a defer keyword prefix with a function call
-func iamADeferredFunc() {
-	fmt.Println("Bye! from a deferred function")
+// one thing to note in a deferred call is that, the arguments in the deferred call are evaluated immediately
+// so if you call a deferred function, it will not use the updated version of arguments
+func iamADeferredFunc(str string) {
+	fmt.Println(str, "from a deferred function")
 }
 
 // anonymous function
@@ -61,7 +63,9 @@ func iamADeferredFunc() {
 func main() {
 	// Although this is called in the beginning, since we have prexied the function call with defer keyword
 	// this function will be called when all the existing code in main is called
-	defer iamADeferredFunc()
+	defPrint := "Bye"
+	defer iamADeferredFunc(defPrint)
+	defPrint = "Bye Bye" // the args to a deferred functions are evaluated immediately. so the function will print Bye
 	fmt.Println("Hello World")
 	multiplyBy2 := multiply(2) // this returns a new function
 	multiplyBy4 := multiply(4) // this also returns a new function
