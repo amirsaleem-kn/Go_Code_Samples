@@ -1,0 +1,3 @@
+Race condition occurs when two programs depends upon the same memory, and since execution order of goroutines is
+non-deterministic, instructions within the goroutines are also non-deterministic, we might get different values of the shared data
+based on the execution order of the tasks done in tasks interleaving.
