@@ -113,3 +113,16 @@ for {
 7. Flag down - shared variable is available
 8. sync.Lock() to put the flag up, meaning shared variable is in use
 9. sync.Unlock() to put the flag down, meaning shared variable is available for use
+
+# Synchronous Initialization
+
+1. The objective is to initialize the variables before they can be available to use to other goroutines
+2. The problem is where to initialize and how to initialize for the variables to be available to other goroutines for use
+3. One solution is to initialize in the main goroutine which is going to call the other goroutines.
+4. The other solution is to use the sync package, and use sync.Once method call, so the variable gets initialised only once
+5. sync.once.Do(f)  is the syntax to use signle initialisation
+6. you can put this once.Do(f) call in multiple goroutines, the sync package will ensure that this is executed only once
+
+# Deadlock
+
+1. 
