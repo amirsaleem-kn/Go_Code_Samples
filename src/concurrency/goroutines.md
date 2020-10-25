@@ -125,4 +125,17 @@ for {
 
 # Deadlock
 
-1. 
+1. Circular dependencies between multiple goroutines leads to deadlock
+2. A deadlock occurs when two more goroutines infinitely wait for each other to release the lock to get their job done
+3. So, G1 is waiting for G2 to release the lock, while G2 is waiting for the G1 to release the lock, this creates a deadlock
+
+# Dining Philosophers Problem
+
+1. Classic problem involving concurrency and synchronization
+2. 5 philosophers sitting at a round table
+3. Each one has plate in front of him
+4. 1 chopstick is places between each adjacent pair
+5. Want to eat rice from their plate, but needs two chopsticks
+6. Only one philosopher can hold a chopstick at a time
+7. If one philosopher is eating his neighbour cannot eat, he has to wait
+8. Not enough chopsticks for everyone to eat at once
